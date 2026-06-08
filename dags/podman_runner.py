@@ -3,9 +3,9 @@ from pendulum import datetime, duration
 
 @dag(
     start_date=datetime(2025, 4, 1),  # date after which the DAG can be scheduled
-    schedule="@daily",  # see: https://www.astronomer.io/docs/learn/scheduling-in-airflow for options
+    schedule="@daily",
     max_consecutive_failed_dag_runs=5,  # auto-pauses the DAG after 5 consecutive failed runs, experimental
-    doc_md=__doc__,  # add DAG Docs in the UI, see https://www.astronomer.io/docs/learn/custom-airflow-ui-docs-tutorial
+    doc_md=__doc__, 
     default_args={
         "owner": "jmurray",  # owner of this DAG in the Airflow UI
         "retries": 3,  # tasks retry 3 times before they fail
