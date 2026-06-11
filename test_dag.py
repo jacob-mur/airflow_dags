@@ -9,14 +9,20 @@ from pendulum import datetime, duration
     tags=["example"],
 )
 def test_dag():
-    @task.kubernetes(
-        image="alpine:3.22.4'",  # The Docker image to spin up
-        name="k8s-task-worker",    # Base name for the generated pod
-        namespace="bsc",       # Target K8s namespace
-        in_cluster=True,           # True if Airflow is already inside the cluster
-        # Optional: define resource constraints
-        get_logs=True,             # Streams container stdout straight to Airflow logs
-    )
-
-# instantiate the dag
+    @task.kubernetes(image="alpine:3.22.4'",
+                     name="k8s-task-worker",
+                     namespace="bsc",
+                     in_cluster=True,
+                     get_logs=True,)
+    
+    def echo_hello_world():
+        """
+        This function body executes inside the Kubernetes pod.
+        Standard output is captured and forwarded to the Airflow task log.
+        """
+        print("hello world")
+ 
+    # Invoke the task (creates the pod when the DAG runs)
+    echo_hello_world()
+    
 test_dag()
