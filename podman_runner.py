@@ -26,3 +26,6 @@ def podman_runner():
     # calling task
     pull_image()
     run_image()
+
+# instantiate the dag
+podman_runner()
