@@ -20,7 +20,7 @@ def test_dag():
         This function body executes inside the Kubernetes pod.
         Standard output is captured and forwarded to the Airflow task log.
         """
-        print("hello world")
+        pass
  
     # Invoke the task (creates the pod when the DAG runs)
     echo_hello_world()
