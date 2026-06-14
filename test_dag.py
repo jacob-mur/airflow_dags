@@ -9,7 +9,7 @@ from pendulum import datetime, duration
     tags=["example"],
 )
 def test_dag():
-    @task.kubernetes(image="alpine:3.22.4'",
+    @task.kubernetes(image="alpine:3.22.4",
                      name="k8s-task-worker",
                      namespace="bsc",
                      in_cluster=True,
