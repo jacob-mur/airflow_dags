@@ -13,7 +13,7 @@ with DAG(
     run_docker_image = KubernetesPodOperator(
         task_id="random_number_run",
         # The Docker image you want to execute (no Python required)
-        image="barbasol/random_number:2.0.0",
+        image="barbasol/random_number:3.0.0",
         namespace="bsc",
         in_cluster=True,
         # safety configuration
