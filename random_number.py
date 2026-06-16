@@ -3,20 +3,19 @@ from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
 with DAG(
-    dag_id="pure_kubernetes_pod_operator_dag",
+    dag_id="random_number_runner",
     start_date=datetime(2026, 1, 1),
     schedule="@daily",
     catchup=False,
-    tags=["k8s", "operator"],
+    tags=["k8s", "random_number"],
 ) as dag:
 
     run_docker_image = KubernetesPodOperator(
-        task_id="run_native_container",
+        task_id="random_number_run",
         # The Docker image you want to execute (no Python required)
-        image="barbasol/hello_world:1.0.0",
+        image="barbasol/random_number:1.0.0",
         namespace="bsc",
         in_cluster=True,
-        
         # safety configuration
         do_xcom_push=False,             # Prevents Airflow from looking for an XCom output file
         get_logs=True,                  # Streams the container's stdout/stderr to Airflow logs
