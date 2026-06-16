@@ -2,6 +2,8 @@ from datetime import datetime
 from airflow import DAG
 from airflow.providers.cncf.kubernetes.operators.pod import KubernetesPodOperator
 
+# showing how quickly this updates
+
 with DAG(
     dag_id="random_number_runner",
     start_date=datetime(2026, 1, 1),
